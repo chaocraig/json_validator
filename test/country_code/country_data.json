@@ -1,0 +1,25 @@
+
+ {
+		"code" : "CH",
+		"time_zone" : {
+			"offset" : 480
+		},
+		"location" : {
+			"long" : 121,
+			"lat" : "23.46"
+		},
+		"name" : [ {
+			"lan" : "eng",
+                        "name" : "Switzerland"
+		} ],
+		"cities" : [ {
+			"location2" : {
+				"long" : 121.44
+			},
+			"name" : [ {
+				"lan" : "eng",
+				"name" : "BRUSON"
+			} ]
+		} ]
+}
+

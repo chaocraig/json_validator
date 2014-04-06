@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Validation_nodejs</title>
+
+</head>
+<body>
+<h1>Validation_nodejs</h1>
+
+<h2>A <a href="http://tools.ietf.org/html/draft-zyp-json-schema-04">JSON Schema</a> validator for Node.js.</h2>
+
+<p>Much of the source is forked from <a href="https://github.com/natesilva/jayschema/">jayschema</a>. Thanks for natesilva's great work!</p>
+
+<p>The followings are original contributions of jayschema.</p>
+
+<ul>
+<li>Complete validation coverage of JSON Schema Draft v4.</li>
+<li>Optional dynamic loader for referenced schemas (load schemas from a database or the web)</li>
+<li>Useful error messages.</li>
+</ul>
+
+
+<hr />
+
+<p>We made some modifications and added some new functions for our own use:</p>
+
+<ul>
+<li><p>Divided the functions of '<strong>format</strong>' attribute into <strong>simple_format</strong> function and <strong>complex_format</strong> function. Customized simple format need only to add a new format(with a line of regular expression) and a new (minor) error code in core.js.</p>
+
+<ul>
+<li>added complex formats: regex_i</li>
+<li>added simple formats: 'ISO-639', 'ISO-4271', 'ISO-3166', 'url', 'number', 'alphanumeric', 'numeric', 'alpha', 'mongodbid'</li>
+</ul>
+</li>
+<li><p>Much more comprehensive <strong>error messages</strong> including the major+minor error code, full error message, full path of working property and the (opitional) modified output.
+If the type of input value is string, it has to be tested by isNaN() before raising an error.</p></li>
+<li><p>Added the '<strong>divisibleBy</strong>' attribute implementation</p></li>
+<li><p>Added 5 pre-processing functions for being more efficiency</p>
+
+<ul>
+<li>Added the implementation of '<strong>default</strong>' attribute which seems to be missing in jayschema. We make its value be also validated resusively by all other attribtes</li>
+<li><p>Added <strong>checkAndSetBrowserType()</strong> function to broaden the validation with inputs of integer/number and boolean types from browser</p>
+
+<pre><code>  ~~Boolean:~~
+      true --&gt; true, false --&gt; false,
+      "true" --&gt; true, "false" --&gt; false,
+      "1" --&gt; true, "0" --&gt; false
+      any other else will still raise an error!
+
+  ~~Integer and Number:~~
+      If the validated string could be converted into an integer/number and its types include integer/number type, we will replace it in the instance. 
+</code></pre></li>
+<li>Full compatability of '<strong>required</strong>' attribute of JSON Schema Draft version 3 and 4.</li>
+<li>Added removeExtraProperties option and function for removing the not defined properties of a instance</li>
+<li>Added pre_func format to be 'eval()'ed before validation</li>
+</ul>
+</li>
+<li>Added four sample testing programs and totally 40+ test cases</li>
+</ul>
+
+
+<h2>Install</h2>
+
+<pre><code>npm install validation_nodejs
+</code></pre>
+
+<h2>Usages</h2>
+
+<h3>Basic usage</h3>
+
+<p>```js</p>
+
+<blockquote><p>var JayCraySchema = require('../lib');<br/>
+var js = new JayCraySchema();<br/>
+var instance = 64;<br/>
+var schema = { "type": "integer", "multipleOf": 8 };</p>
+
+<p>// synchronous…</p>
+
+<p>console.log('synchronous result:', js.validate(instance, schema));</p>
+
+<p>// …or async</p>
+
+<p>js.validate(instance, schema, function(errs) { <br/>
+    if (errs) { console.error(errs); }<br/>
+    else { console.log('async validation OK!'); }<br/>
+});</p></blockquote>
+
+<pre><code>
+
+### Complete usage
+
+```js
+
+    var val_result_output; 
+    one_test[test.desc] = {  
+                topic : Validator.validate(test.instance, schema),  
+        test_errors : function(val_result) {
+            /* assert errors */
+            if (val_result.length&gt;0) { 
+                v = val_result[0]; //get object of errors
+                if (v) {
+                   if (v.output) {
+                       val_result_output = v.output; //get modified output
+                   }
+
+                    errors =  'constraint-&gt; '+v.constraintNam +':'+v.constraintValue + ', tested-&gt; '+ v.testedValue;
+
+                    if (errors !== test.errors) {
+                        if (v.message)
+                            console.log(v.message); //show full error messages
+                    }
+                    assert.equal(errors, test.errors );
+                }
+            }
+        }
+    };
+        if (test.output)
+        /* if defined assert output */
+        one_test[test.desc]['test_output'] = function(val_result) {
+            assert.equal(JSON.stringify(val_result_output || {}), JSON.stringify(test.output || {}));
+        };
+</code></pre>
+
+<h2>How-to…</h2>
+
+<h3>1. How to add a new format</h3>
+
+<hr />
+
+<h5>a) Add a new simple format</h5>
+
+<p>A simple format is an attribute:value like <strong>format:alphanumeric</strong> in which the alphanumeric is only <em>one line of regular expression</em> like /^[0-9a-zA-Z]*$/.</p>
+
+<p>For adding a new simple format, a developer only needs to add a new line of regular expression and a line of error code in core.js. The added regular expression is declared in exports.FORMAT_REGEXPS of core.js. For example,</p>
+
+<blockquote><p> alphanumeric: new RegExp( /^[0-9a-zA-Z]*$/ ),</p></blockquote>
+
+<p>And, the added error code is declared in codeConstraint of core.js. For example,</p>
+
+<blockquote><pre><code>format: {
+       code : 11,
+       value: {
+        //simple format
+          'email'    :10,
+          'ipv4'     :11,
+          'uri'      :12,
+          'time'     :13,
+          'ISO-639'  :14,
+          'ISO-4271' :15,
+          'ISO-3166' :16,
+          'url'      :17,
+          'number'   :18,
+          'alphanumeric':19,
+          'numeric'  :20,
+          'alpha'    :21,
+          'mongodbid':22,
+          //complex format
+          'date-time':70,
+          'hostname' :71,
+          'ipv6'     :72,
+          'regex_i'  :73
+       }
+},
+</code></pre>
+
+<p>The final returned code is a 4 digit of string equals to format.code + '' + format.value.</p></blockquote>
+
+<h5>b) Add a new comlex format</h5>
+
+<p>A complex format is an attribute:value like <strong>format:regex_i</strong> in which the regex_i is a .js file inside the directory of 'validation_nodejs/lib/suites/draft-04/keywords/formats'.</p>
+
+<p>Besides adding a new js file, for adding a new complex format, a developer also needs to add a declaration in SUPPORTED_COMPLEX_FORMATS of format.js. For example,</p>
+
+<p> var SUPPORTED_COMPLEX_FORMATS = {<br/>
+   'date-time': require('./formats/date-time.js'),<br/>
+   'hostname': require('./formats/hostname.js'),<br/>
+   'ipv6': require('./formats/ipv6.js'),<br/>
+   'regex_i': require('./formats/regex_i.js'),<br/>
+ };</p>
+
+<p>A new error code definition should be also added into codeConstraint of core.js as described above.</p>
+
+<h3>2. How to customize the browser-inputed validations</h3>
+
+<hr />
+
+<p>Sometimes, the inputs from a browser could not be validated so strictly. For example, an integer/number could be string type instead of integer/number type. And, a boolean value could be a string of 'true'/'false'/'1'/'0' instead of true/false.</p>
+
+<p>For not parsing the json tree once again in caller programs, we added the browser-inputed validations into this module. A developer could modify this kind of validation by modifying the checkAndSetBrowserType() in index.js. If this kind of validation is totally not necessary, just remove the  line of checkAndSetBrowserType() call in index.js.</p>
+
+<h2>Run tests</h2>
+
+<pre><code>  npm test
+</code></pre>
+
+<h2>Authors</h2>
+
+<p>Craig Chao &lt;<a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#99;&#x68;&#x61;&#111;&#x63;&#114;&#x61;&#x69;&#103;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x63;&#104;&#97;&#111;&#99;&#114;&#97;&#x69;&#103;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>>, &lt;<a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#114;&#x65;&#110;&#x61;&#117;&#x64;&#115;&#97;&#x75;&#118;&#x61;&#x69;&#x6e;&#x40;&#97;&#109;&#105;&#x2e;&#99;&#x6f;&#x6d;&#x2e;&#x74;&#x77;">&#x72;&#x65;&#x6e;&#x61;&#x75;&#x64;&#x73;&#97;&#117;&#x76;&#x61;&#105;&#110;&#x40;&#97;&#x6d;&#105;&#x2e;&#99;&#x6f;&#x6d;&#46;&#116;&#x77;</a>></p>
+</body>
+</html>

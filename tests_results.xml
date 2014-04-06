@@ -1,0 +1,57 @@
+<testsuite name="Vows test" tests="55" timestamp="Wed, 17 Apr 2013 10:17:55 GMT" errors="0" failures="0" skip="0" time="0.053">
+<testcase classname="Validation" name="./tests/main0 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main1 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main2 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main3 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main4 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main5 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main6 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main7 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main8 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main9 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main10 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main11 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main12 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main13 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main14 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main15 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main16 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main17 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main18 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main19 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main20 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main21 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main22 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main23 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main24 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main25 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main26 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main27 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main28 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main29 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main30 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main31 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main32 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main33 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main34 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/main35 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination0 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination1 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination2 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination3 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination4 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination5 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination6 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination7 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination8 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination9 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/pagination10 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/country0 Country: test_errors" />
+<testcase classname="Validation" name="./tests/id.profile0 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/id.contact0 undefined: test_errors" />
+<testcase classname="Validation" name="./tests/catalog0 Catalog: test_errors" />
+<testcase classname="Validation" name="./tests/extra_p0 Remove extra properties is true: test_errors" />
+<testcase classname="Validation" name="./tests/extra_p1 Remove extra properties is false: test_errors" />
+<testcase classname="Validation" name="./tests/addt_p0 addtional properties is true: test_errors" />
+<testcase classname="Validation" name="./tests/addt_p1 addtional properties is true: test_errors" />
+</testsuite>

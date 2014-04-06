@@ -1,0 +1,32 @@
+{
+  "name": "validation",
+  "description": "JSON schema validation module.",
+  "version":"0.2.5",
+  "author": {
+    "name": "Craig Chao",
+    "email": "chaocraig@gmail.com"
+  },
+  "maintainers": [],
+  "dependencies": {},
+  "devDependencies": {
+    "vows": "0.7.x"
+  },
+  "keywords": [
+    "Validation",
+    "JSON",
+    "Schema"
+  ],
+  "scripts": {
+    "test": "sh ./test/test.sh"
+  },
+  "main": "./index.js",
+  "engine": "node >= 1.1.65",
+  "repository": {
+    "type": "git",
+  },
+  "private": false,
+  "readme": "# Validation-nodejs\n\n\tThis is a nodejs module for JSON object Validation against a JSON-Schema.\n\tImplement most features of the http://tools.ietf.org/html/draft-zyp-json-schema-04.\n \n## Features\n\n\t* Validate a JSON object agains a schema\n\n## Version\n\n\t0.1.1\n",
+  "_id": "validation@0.1",
+  "dist": {
+  },
+}

@@ -1,0 +1,194 @@
+{
+
+    "name": "Country",
+    "type": "object",
+    "optional": true,
+    "additionalProperties": false,
+    "properties": {
+        "code": {
+            "type": "string",
+            "description": "ISO-3166 2",
+            "required": true,
+            "maxLength": 2,
+            "minLength": 2
+        },
+        "time_zone": {
+            "type": "object",
+            "optional": true,
+            "additionalProperties": false,
+            "properties": {
+                "offset": {
+                    "description": "GMT Offset",
+                    "type": "number",
+                    "optional": true
+                },
+                "dst": {
+                    "name": "Daylight Saving Time",
+                    "type": "object",
+                    "optional": true,
+                    "additionalProperties": false,
+                    "properties": {
+                        "start": {
+                            "description": "Adjustment start day",
+                            "type": "string",
+                            "format": "date-time",
+                            "optional": true
+                        },
+                        "end": {
+                            "description": "Adjustment end day",
+                            "type": "string",
+                            "format": "date-time",
+                            "optional": true
+                        }
+                    }
+                }
+            }
+        },
+        "flag": {
+            "type": "string",
+            "format": "uri",
+            "description": "uri of national flag",
+            "optional": true
+        },
+        "location": {
+            "name": "Geoloc",
+            "type": "object",
+            "optional": true,
+            "options": {
+                "geoquery": true
+            },
+            "additionalProperties": false,
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "maximum": 90,
+                    "minimum": -90,
+                    "default": 60,
+                    "pattern": "^(-)?[0-9]?[0-9](.[0-9]+)?$",
+                    "required": true
+                },
+                "long": {
+                    "type": "number",
+                    "maximum": 180,
+                    "minimum": -180,
+                    "pattern": "^(-)?[0-1]?[0-9]?[0-9](.[0-9]+)?$",
+                    "required": true
+                }
+            }
+        },
+        "name": {
+            "type": "array",
+            "items": {
+                "name": "language_name",
+                "type": "object",
+                "required": true,
+                "additionalProperties": false,
+                "properties": {
+                    "lan": {
+                        "type": "string",
+                        "format": "ISO-639-source",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            },
+            "required": true,
+            "minItems": 1
+        },
+        "cities": {
+            "type": "array",
+            "items": {
+                "name": "City",
+                "type": "object",
+                "optional": true,
+                "additionalProperties": false,
+                "properties": {
+                    "time_zone": {
+                        "type": "object",
+                        "optional": true,
+                        "additionalProperties": false,
+                        "properties": {
+                            "offset": {
+                                "description": "GMT Offset",
+                                "type": "number",
+                                "optional": true
+                            },
+                            "dst": {
+                                "name": "Daylight Saving Time",
+                                "type": "object",
+                                "optional": true,
+                                "additionalProperties": false,
+                                "properties": {
+                                    "start": {
+                                        "description": "Adjustment start day",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "optional": true
+                                    },
+                                    "end": {
+                                        "description": "Adjustment end day",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "optional": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "location2": {
+                        "name": "Geoloc",
+                        "type": "object",
+                        "optional": true,
+                        "options": {
+                            "geoquery": true
+                        },
+                        "additionalProperties": false,
+                        "properties": {
+                            "lat2": {
+                                "type": "number",
+                                "maximum": 90,
+                                "minimum": -90,
+                                "default": 70,
+                                "pattern": "^(-)?[0-9]?[0-9](.[0-9]+)?$",
+                                "required": true
+                            },
+                            "long": {
+                                "type": "number",
+                                "maximum": 180,
+                                "minimum": -180,
+                                "pattern": "^(-)?[0-1]?[0-9]?[0-9](.[0-9]+)?$",
+                                "required": true
+                            }
+                        }
+                    },
+                    "name": {
+                        "type": "array",
+                        "items": {
+                            "name": "language_name",
+                            "type": "object",
+                            "required": true,
+                            "additionalProperties": false,
+                            "properties": {
+                                "lan": {
+                                    "type": "string",
+                                    "format": "ISO-639-source",
+                                    "required": true
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "required": true,
+                        "minItems": 1
+                    }
+                }
+            },
+            "optional": true
+        }
+    }
+}
